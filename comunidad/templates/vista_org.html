@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+    <style>
+        .form-row {
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .form-row > div {
+            flex: 1;
+        }
+    </style>
+    <div class="containera">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-row align-items-center justify-content-center">
+                <div class="col-sm-3 my-1 text-center">
+                    {{ form.nombre.label_tag }}
+                    {{ form.nombre }}
+                </div>
+                <div class="col-sm-3 my-1 text-center">
+                    {{ form.tipo.label_tag }}
+                    {{ form.tipo }}
+                </div>
+                <div class="col-sm-3 my-1 text-center">
+                    <br>
+                    {{ form.interes.label_tag }}
+                    {{ form.interes }}
+                </div>
+                <div class="col-auto my-1">
+                    <br>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Buscar</button>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+    <br>
+    <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+        <h3 class="d-inline-block border rounded-pill py-2 px-4 mb-0">Organizaciones Registradas</h3>
+    </div>
+    <div class="container-xxl py-5">
+        <h6>Da clic en la Organización para ver su perfil completo</h6>
+        <div class="container">
+            <div class="container-fluid my-5">
+                <div class="row justify-content-start mt-5">
+                    {% for organization in org_list %}
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <a href="{% url 'org_getdata' organization_id=organization.id %}" class="team-item position-relative rounded overflow-hidden">
+                            <div class="team-text bg-light text-center p-4">
+                                <h5><a href="{% url 'org_getdata' organization_id=organization.id %}">{{ organization.organization_name }} <i class="fas fa-arrow-right"></i></a></h5>
+                                <p class="text-primary">{{ organization.organization_type }}</p>
+                                <div class="team-social text-center">
+                                    <p>Email: {{ organization.organization_mail }}</p>
+                                    <p>Sitio Web: {{ organization.organization_web }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% empty %}
+                    <div class="col">
+                        <p>No hay organizaciones registradas.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <a href="{% url 'home' %}" class="btn btn-primary align-items-center justify-content-center" style="margin-left: 600px;">
+            <i class="fas fa-home"></i> Inicio
+        </a>
+        
+    </div>
+    {% endblock %}
+</html>
+
+    

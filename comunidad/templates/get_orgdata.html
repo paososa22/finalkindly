@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h2 class="card-title mb-4">Conoce: {{ Organitation.organization_name }}</h2>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong><i class="fas fa-user"></i> Nombre:</strong>
+                                <span>{{ Organitation.organization_name }}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <strong><i class="fas fa-envelope"></i> Correo:</strong>
+                                <span>{{ Organitation.organization_mail }}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <strong><i class="fas fa-map-marker"></i> Dirección:</strong>
+                                <span>{{ Organitation.organization_address }}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <strong><i class="fas fa-globe"></i> Página Web:</strong>
+                                <a href="{{ organization.organization_web }}" target="_blank" class="text-primary">{{ Organitation.organization_web }}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <strong><i class="fas fa-info-circle"></i> Descripción:</strong>
+                                <span>{{ Organitation.organization_description }}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <strong><i class="fas fa-briefcase"></i> Tipo:</strong>
+                                <span>{{ Organitation.organization_type }}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <strong><i class="fas fa-users"></i> Número de Voluntarios:</strong>
+                                <span>{{ Organitation.volunteer_count }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    {% if not user.extendeddata.user_type == 'R' %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h3 class="mb-4"><i class="fas fa-comment-alt"></i> Testimonios</h3>
+                
+                <form method="post" class="d-flex justify-content-center align-items-center">
+                    {% csrf_token %}
+                    <div class="mb-3 border rounded p-4 bg-light">
+                        <label for="{{ comment_form.text.id_for_label }}" class="form-label">¡Nos encantaría saber tu opinión de nosotros!</label>
+                        {{ comment_form.text }}
+                        <button type="submit" class="btn btn-primary w-50 d-flex justify-content-center align-items-center">
+                            <i class="fas fa-plus-circle"></i> Agregar
+                        </button>
+                    </div>
+                    <br>
+                </form>
+                
+                
+                
+                
+            </div>
+            <br><br>
+            <div class="col-lg-6 wow fadeIn float-start" data-wow-delay="0.1s">
+                <p class="d-inline-block border rounded-pill py-1 px-4"><i class="fa fa-info-circle" aria-hidden="true"></i> Conoce más!</p> 
+            
+                <!-- Icono para los testimonios -->
+                <div class="my-4">
+                    <h4><i class="fa fa-comments" aria-hidden="true"></i> Testimonios</h4>
+                    <p>¿Quieres saber qué piensan los que ya han estado en nuestra organización?</p>
+                    <a class="btn btn-outline-primary btn-block" href="{% url 'view_comments' organization_id=Organitation.id %}" style="max-width: 400px; margin-top: 10px;">Ver Testimonios</a>
+                </div>
+                
+                <!-- Icono y botón para expresar interés -->
+                <div class="my-4">
+                    <h4><i class="fa fa-heart" aria-hidden="true"></i> ¿Interesado en unirte a nosotros?</h4>
+                    <p>¡Únete a nuestro equipo y sé parte del cambio!</p>
+                    <form method="post" action="{% url 'get_interesados' organization_id=Organitation.id %}">
+                        {% csrf_token %}
+                        <button type="submit" name="interes" class="btn btn-outline-primary btn-block" style="max-width: 400px; margin-top: 10px;">Me Interesa</button>
+                    </form>
+                </div>
+            </div>
+                
+        </div>
+        <div class="container text-center mt-3">
+            <a href="{% url 'vista_org' %}" class="btn btn-primary btn-sm rounded-pill py-2 px-3">
+                <i class="fas fa-building mr-2"></i> Todas las Organizaciones
+            </a>
+        </div>
+        
+    </div>
+    
+    
+    {% endif %}
+    {% if user.extendeddata.user_type == 'R' %}
+    <ul class="list-group-flush text-center">
+        <li class="list-group-item">
+            <a href="{% url 'view_comments' Organitation.id %}" class="btn btn-light btn-block mb-2  mx-1">
+                <i class="fa fa-comment"></i> Comentarios
+            </a>
+            <a href="{% url 'update_organizationname' Organitation.id %}" class="btn btn-light btn-block mb-2  mx-1">
+                <i class="fas fa-edit"></i> Editar Nombre
+            </a>
+            <a href="{% url 'update_organizationdata' Organitation.id %}" class="btn btn-light btn-block mb-2  mx-1">
+                <i class="fas fa-edit"></i> Editar Web
+            </a>
+
+            <a href="{% url 'update_organizationmail' Organitation.id %}" class="btn btn-light btn-block mb-2  mx-1">
+                <i class="fas fa-edit"></i> Editar Mail
+            </a>
+            <a href="{% url 'view_intereses' Organitation.id %}" class="btn btn-light btn-block mb-2  mx-1">Interesados</a>
+        </li>
+        
+        <li class="list-group-item list-group-flush">
+            <a href="{% url 'ver_org' %}" class="btn btn-outline-primary btn-block mx-1">
+                <i class="fas fa-arrow-left"></i> Regresar a organizaciones
+            </a>
+            <a href="{% url 'delete_organization' Organitation.id %}" class="btn btn-outline-primary btn-block mx-1">
+                <i class="fas fa-trash"></i> Eliminar
+            </a>
+        </li>
+    </ul>
+    {% endif %}
+    {% endblock %}
+        
+
+
+
+    </body>
+    
+</html>

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <p class="d-inline-block border rounded-pill py-1 px-4">Organizaciones Registradas</p>
+                <h3>Da clic para ver el perfil de la organización completa</h3>
+            </div>
+            <div class="container-fluid my-5">
+                <div class="row justify-content-start mt-5">
+                    {% for organization in my_orglist %}
+                    <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                        <a href="{% url 'org_getdata' organization_id=organization.id %}" class="team-item position-relative rounded overflow-hidden">
+                            <div class="team-text bg-light text-center p-4">
+                                <h5><a href="{% url 'org_getdata' organization_id=organization.id %}">{{ organization.organization_name }} <i class="fas fa-arrow-right"></i></a></h5>
+                                <p class="text-primary">{{ organization.organization_type }}</p>
+                                <div class="team-social text-center">
+                                    <p>Emal: {{ organization.organization_mail }}</p>
+                                    <p>Sitio Web: {{ organization.organization_web }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% empty %}
+                    <div class="col">
+                        <p>No tienes organizaciones registradas.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+            </div>
+        </div>
+
+        <a href="{% url 'home' %}" class="btn btn-primary align-items-center">
+            <i class="fas fa-home me-2" style="margin-left: 10px;"></i> Inicio
+        </a>
+        
+        
+    </div>
+    {% endblock %}
+</html>

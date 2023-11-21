@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-6 col-md-6">
+                <div class="bg-light rounded p-5">
+                    <p class="d-inline-block border rounded-pill py-1 px-4"><i class="fa fa-id-card" aria-hidden="true"></i> Nueva organización</p>
+                    <h4 class="mb-2">Ingresa tus datos</h4>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="mb-2">
+                            <label for="organization_name" class="form-label">Nombre de la Organización</label>
+                            <input type="text" name="organization_name" class="form-control" id="organization_name">
+                        </div>
+                        <div class="mb-2">
+                            <label for="organization_mail" class="form-label">Email de la Organización</label>
+                            <input type="email" name="organization_mail" class="form-control" id="organization_mail">
+                            <small class="form-text text-muted">Ej. aaa@aaa.com </small>
+                        </div>
+                        <div class="mb-2">
+                            <label for="organization_address" class="form-label">Dirección de la Organización</label>
+                            <input type="text" name="organization_address" class="form-control" id="organization_address">
+                        </div>
+                        <div class="mb-2">
+                            <label for="organization_web" class="form-label">Sitio Web de la Organización</label>
+                            <input type="text" name="organization_web" class="form-control" id="organization_web">
+                            <small class="form-text text-muted">Ej. www.organizacion.com</small>
+
+                        </div>
+                        <div class="mb-2">
+                            <label for="organization_description" class="form-label">Descripción de la Organización</label>
+                            <textarea name="organization_description" class="form-control" id="organization_description" style="height: 150px;"></textarea>
+                        </div>                            
+                        <div class="mb-2">
+                            <label for="organization_type" class="form-label">Tipo de Organización</label>
+                            <select name="organization_type" class="form-control" id="organization_type">
+                                <option value="" selected disabled>Selecciona el tipo de organización</option>
+                                <option value="Derechos Humanos">Derechos Humanos</option>
+                                <option value="Medio Ambiente">Medio Ambiente</option>
+                                <option value="Salud">Salud</option>
+                                <option value="Educación">Educación</option>
+                                <option value="Animales">Animales</option>
+                                <option value="Cultural y Arte">Cultural y Arte</option>
+                                <option value="Alivio de la Pobreza">Alivio de la Pobreza</option>
+                                <option value="Derechos de los Refugiados">Derechos de los Refugiados</option>
+                            </select>
+                            <small class="form-text text-muted">No dejes vacío este campo </small>
+
+                        </div>
+                        <div class="mb-2">
+                            <label for="organization_type" class="form-label">Número de Voluntarios</label>
+                            <select name="volunteer_count" class="form-control" id="volunteer_count">
+                                <option value="" selected disabled>Selecciona el numero de voluntarios de tu Organización</option>
+                                <option value="1-10"> de 1 a 10</option>
+                                <option value="10-30">de 10 a 30</option>
+                                <option value="30-50">de 30 a 50</option>
+                                <option value="+ 50">más de 50</option>
+                            </select>
+                            <small class="form-text text-muted">No dejes vacío este campo </small>
+                        </div>
+                        <br>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-building"></i> Registrar Organización
+                            </button>                                                               
+                            <br>
+                            <a style="font-family: sans-serif; font-size: smaller; color: #4395ee; text-decoration: underline;" href="{% url 'home' %}">Regresar al Inicio</a>
+                        </div>
+                    </form>
+                    <p>{{message}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</html>

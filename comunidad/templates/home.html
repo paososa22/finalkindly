@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+   
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="d-flex flex-column">
+                        <img src="{% static 'img/voluntarios.jpg' %}" alt="" class="img-fluid rounded w-75 align-self-end" >
+                        <img src="{% static 'img/Kindly.png' %}" class="img-fluid rounded w-50 bg-white pt-3 pe-3" style="margin-top: -25%;">
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="col-lg-6 wow fadeIn float-start" data-wow-delay="0.1s">
+                        <p class="d-inline-block border rounded-pill py-1 px-4"><i class="fa fa-info-circle" aria-hidden="true"></i> Nosotros</p> 
+                    </div>
+                    <div class="col-lg-6 wow fadeIn float-end" data-wow-delay="0.5s">
+                        <a href="{% url 'profile' user_id=user.id %}" class="btn btn-outline-primary btn-sm rounded-pill py-1 px-4"><i class="fa fa-user" aria-hidden="true"></i> Mi perfil</a>
+                    </div>
+                    <br>
+                    <div class="col-lg-6 wow fadeIn float-start">
+                        <br>
+                    </div>
+    
+
+                    <h3 class="mb-4">Bienvenid@ {{user.username}}</h3>
+                    <p>Somos el enlace que facilita el encuentro entre personas dispuestas a brindar su tiempo y energía, y las organizaciones que dan vida a estas hermosas iniciativas. </h4></p>
+                    {% if user_extended_data.user_type == "R" %}
+                       <p>Tu perfil es de Representante:</p>
+                       <p><i class="far fa-check-circle text-primary me-3"></i> Solo voluntarios comprometidos </p>
+                       <p><i class="far fa-check-circle text-primary me-3"></i> Participacion activa</p>
+                       <div class="d-grid gap-2 d-md-block">
+                        <a href="{% url 'crear_org' %}" class="btn btn-outline-primary btn-sm rounded-pill py-2 px-3 mt-2">Registrar Organización</a>
+                        <a href="{% url 'ver_org' %}" class="btn btn-outline-primary btn-sm rounded-pill py-2 px-3 mt-2">Ver mis Organizaciones</a>
+                      </div>
+
+
+                    {% elif user_extended_data.user_type == "V" %}
+                       <h5>Tu perfil es de Voluntario:</h5>
+                       <p><i class="far fa-check-circle text-primary me-3"></i>Organizaciones Profesionales </p>
+                       <p><i class="far fa-check-circle text-primary me-3"></i>Oportunidades Unicas</p>
+                       <a class="btn btn-primary rounded-pill py-2 px-3 mt-3" href="{% url 'vista_org' %}">Ver Organizaciones</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+</html>

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% if user.extendeddata.user_type == 'V' %}
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 wow fadeIn float-end" data-wow-delay="0.5s">
+                    <a href="{% url 'profile' user_id=user.id %}" class="btn btn-outline-primary btn-sm rounded-pill py-1 px-4"><i class="fa fa-user" aria-hidden="true"></i> Mi perfil</a>
+                </div>
+                <br>
+                <br>
+                {% if interesados_usuario %}
+                    <ul class="list-group">
+                        {% for interesado_usuario in interesados_usuario %}
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <strong>Nombre:</strong> {{ interesado_usuario.organizacion.organization_name }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <strong>Correo:</strong> {{ interesado_usuario.organizacion.organization_mail }}
+                                    </div>
+                                    <div class="col-md-2">
+                                        <form method="post" action="">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="organizacion_id" value="{{ interesado_usuario.organizacion.id }}">
+                                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No estás interesado en ninguna organización.</p>
+                {% endif %}
+            </div>
+            <br>
+        </div>
+    {% endif %}
+
+    {% if user.extendeddata.user_type == 'R' %}
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h2 class="mb-4">Voluntarios interesados en Tu Organización: {{ organization.organization_name }}</h2>
+                    {% if interesados_organizacion %}
+                        <ul class="list-group">
+                            {% for interesado_organizacion in interesados_organizacion %}
+                                <li class="list-group-item">
+                                    <strong>Nombre y Correo:</strong> {{ interesado_organizacion.user.username }} ({{ interesado_organizacion.user.email }})
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No hay voluntarios interesados en tu organización.</p>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+        <div class="container text-center mt-4 wow fadeInUp" data-wow-delay="0.1s">
+            <a href="{% url 'org_getdata' organization_id=organization.id %}" class="btn btn-secondary btn-sm">
+                <i class="fas fa-arrow-left mr-2"></i> Regresar a {{ organization.organization_name }}
+            </a>
+        </div>
+    {% endif %}
+    {% endblock %}
+</html>
+
+
+
+

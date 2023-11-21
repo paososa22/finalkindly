@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6 text-center">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h2 class="card-title">Actualizar Correo </h2>
+                        
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="{{ form_edit_mail.organization_mail.id_for_label }}">Correo:</label>
+                                {{ form_edit_mail.organization_mail }}
+                            </div>
+                            <button type="submit" class="btn btn-primary">Editar Datos</button>
+                        </form>
+                        
+                        
+                        <p class="mt-3">{{ message }}</p>
+    
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="{% url 'org_getdata' organization_id=organization.id %}" class="btn btn-secondary mt-3">Regresar a {{ organization.organization_name }}</a>
+        </div>
+        
+    </div>
+    {% endblock %}
+</html>

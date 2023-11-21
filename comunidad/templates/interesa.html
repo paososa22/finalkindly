@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow p-3 mb-5 bg-white rounded">
+                    <div class="card-body text-center">
+                        <h1 class="card-title" style="font-size: 24px; font-weight: bold;">¿Estás interesado en esta organización?</h1>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="d-flex justify-content-center">
+                            {% if interesado_existente %}
+                                <button type="submit" name="interes" value="no" class="btn btn-danger mx-3" style="padding: 10px 20px; font-weight: bold; border-radius: 5px;">No</button>
+                            {% else %}
+                                <button type="submit" name="interes" value="si" class="btn btn-primary mx-3" style="padding: 10px 20px; font-weight: bold; border-radius: 5px;">Sí</button>
+                            {% endif %}
+                            </div>
+                            <input type="hidden" name="organizacion" value="{{ Organitation.id }}">
+                            <input type="hidden" name="user" value="{{ user.id }}">
+                        </form>
+                        <br>
+                        
+                        <li class="list-group-item list-group-flush">
+                            <a href="{% url 'vista_org' %}" class="btn btn-outline-primary btn-block  mx-1">
+                                <i class="fas fa-arrow-left"></i> Regresar a organizaciones
+                            </a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+        
+        
+        
+</html>
