@@ -13,7 +13,8 @@ from django.shortcuts import render, redirect
 
 # views.py
 
-
+def logs(request):
+    return redirect('login')
 @login_required
 def inicio_comunidad(request):
     user_request=User.objects.get(username=request.user.username)

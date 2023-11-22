@@ -3,8 +3,7 @@ from django.urls import path,include
 from . import views
 from django.contrib.auth import views as auth_views
 
-urlpatterns = [
-    path('',views.inicio_comunidad,name='home'),
+urlpatterns = [  
     path('newuser/',views.createuser,name='createuser'),
    #path('listavol', views.lista_com, name='listavol'),
     path('vol_getdata/<int:user_id>',views.get_volunteerdata, name='vol_profile'),
