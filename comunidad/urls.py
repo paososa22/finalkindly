@@ -4,7 +4,7 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [  
-    path('/',views.iniciocomunidad,name='home'),
+    path('',views.inicio_comunidad,name='home'),
     path('newuser/',views.createuser,name='createuser'),
    #path('listavol', views.lista_com, name='listavol'),
     path('vol_getdata/<int:user_id>',views.get_volunteerdata, name='vol_profile'),
