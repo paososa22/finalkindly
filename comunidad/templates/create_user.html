@@ -145,15 +145,16 @@
             </div>
         </div>
     </div>
-    <button class="open-button" onclick=openForm()>Voli Bot!</button>
-
+    <button class="open-button" onclick="openForm()">
+        <img src="{% static 'img/botc.png' %}" alt="Voli Bot">
+    </button>
+    
     <div class="chat-popup" id="chatbotpanel">
-        <form class="form-chatbot" > 
-            <iframe class = "chatbot-window" src='https://webchat.botframework.com/embed/lenguajedsccpss-bot?s=tfySOXOdmek.02tdp4k0wVU7PyngyjN7_EaiaFXRb7e8Q26BTVXUSCo'></iframe>
-            <button type="button" class="btn_cancel" onclick=closeForm()>Cerrar Bot</button>
+        <form class="form-chatbot">
+            <iframe class="chatbot-window" src='https://webchat.botframework.com/embed/lenguajedsccpss-bot?s=tfySOXOdmek.02tdp4k0wVU7PyngyjN7_EaiaFXRb7e8Q26BTVXUSCo'></iframe>
+            <button type="button" class="btn_cancel" onclick="closeForm()"> <img src="{% static 'img/boto.png' %}" alt="Voli Bot"></button>
         </form>
     </div>
-
     <!-- end bot section -->
 
 

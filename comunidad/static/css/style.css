@@ -557,28 +557,67 @@
 .chat-popup {
     display: none;
     position: fixed;
-    bottom: 0px;
+    bottom: 130px;
     right: 15px;
     height: 500px;
-    border: 1px solid #EFF5FF;
+    border: 1px solid #8aa8da;
     z-index: 9;
+    background-color: #ADD8E6
 }
 
 .chatbot-window {
-    min-height: 410px;
+    min-height: 500px;
     background-color: #ADD8E6; 
 }
 
 .btn_cancel {
     background-color: #0463FA;
     color: rgb(255, 255, 255);
-    padding: 16px 20px;
+    padding: 16px;
     border: none;
     cursor: pointer;
     opacity: 1;
     position: fixed;
     bottom: 23px;
     right: 30px;
-    width: 280px;
+    width: 80px; /* Ajusta el ancho según sea necesario */
+    height: 80px; /* Ajusta la altura según sea necesario */
+    border-radius: 50%; /* Hace que el botón sea circular */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.open-button {
+    background-color: #0463FA;
+    color: rgb(255, 255, 255);
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+    opacity: 1;
+    position: fixed;
+    bottom: 23px;
+    right: 30px;
+    width: 80px; /* Ajusta el ancho según sea necesario */
+    height: 80px;
+    border-radius: 50%; /* Hace que el botón sea circular */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.open-button img {
+    width: 80px; /* Ajusta el tamaño de la imagen según sea necesario */
+    height: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn_cancel img {
+    width: 80px; /* Ajusta el tamaño de la imagen según sea necesario */
+    height: auto;
+    justify-content: center;
+    align-items: center;
+}
+
 
