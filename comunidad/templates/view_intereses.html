@@ -48,7 +48,7 @@
                         <ul class="list-group">
                             {% for interesado_organizacion in interesados_organizacion %}
                                 <li class="list-group-item">
-                                    <strong>Nombre </strong> {{ interesado_organizacion.user.first_name }} {{ interesado_organizacion.user.last_name }}
+                                    <strong>Nombre: </strong> {{ interesado_organizacion.user.first_name }} {{ interesado_organizacion.user.last_name }}
                                     <strong>Correo:</strong> {{ interesado_organizacion.user.email }}
                                 </li>
                             {% endfor %}
